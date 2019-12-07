@@ -23,10 +23,12 @@ body, html {
 <link rel = "stylesheet" type = "text/css" href = "css/style.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-    $('.image-toggler').click(function(){
-		$('.image-toggle').hide();
-		$($(this).attr('data-image-id')).show();
-	});
+    $(document).ready(function(){
+        $('.image-toggler').click(function(){
+            $('.image-toggle').hide();
+            $($(this).attr('data-image-id')).show();
+        });
+    });
 </script>
 </head>
 <body>
