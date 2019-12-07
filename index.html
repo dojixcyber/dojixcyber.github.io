@@ -22,6 +22,12 @@
     </style>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/js/themes/grid-light.js"></script>
     <script>
         $(document).ready(function(){
             $('.image-toggler').click(function(){
@@ -49,8 +55,125 @@
             <iframe class="image1 image-toggle" title="Which State Has The Highest Successes?" aria-label="USA states choropleth map" id="datawrapper-chart-20a6T" src="//datawrapper.dwcdn.net/20a6T/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="495"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
             <iframe class="image2 image-toggle" title="Which State Has The Highest Successes When Normalized by Population?  " aria-label="USA states choropleth map" id="datawrapper-chart-D6YeW" src="//datawrapper.dwcdn.net/D6YeW/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
         </div>
+        <div id="container"></div>
+
+        <div style="display:none">
+            <!-- Source: http://or.water.usgs.gov/cgi-bin/grapher/graph_windrose.pl -->
+            <table id="freq" border="0" cellspacing="0" cellpadding="0">
+                <tr nowrap bgcolor="#CCCCFF">
+                    <th colspan="9" class="hdr">Table of Frequencies (percent)</th>
+                </tr>
+                <tr nowrap bgcolor="#CCCCFF">
+                    <th class="freq">People</th>
+                    <th class="freq">Backers</th>
+                    <th class="freq">Facebook Shares</th>
+        
+                </tr>
+                <tr nowrap>
+                    <td class="dir">Project 1</td>
+                    <td class="data">35383</td>
+                    <td class="data">11858</td>
+            
+                </tr>   
+                    <tr nowrap>
+                    <td class="dir">Project 2</td>
+                    <td class="data">23999</td>
+                    <td class="data">260505</td>
+            
+                </tr>  
+        
+                <tr nowrap>
+                    <td class="dir">Project 3</td>
+                    <td class="data">18219</td>
+                    <td class="data">46368</td>
+
+                    
+                </tr>
+                <tr nowrap bgcolor="#DDDDDD">
+                    <td class="dir">Project 4</td>
+                    <td class="data">17713</td>
+                    <td class="data">85978</td>
+            
+            
+                </tr>
+                <tr nowrap>
+                    <td class="dir">Project 5</td>
+                    <td class="data">15998</td>
+                    <td class="data">20253</td>
+
+                </tr>
+                
+            </table>
+        </div>
 
     <div class="parallax"></div>
 
     </body>
+    <script>
+        // Parse the data from an inline table using the Highcharts Data plugin
+Highcharts.chart('container', {
+    data: {
+        table: 'freq',
+        startRow: 1,
+        endRow: 17,
+        endColumn: 7
+    },
+
+    chart: {
+        polar: true,
+        type: 'column'
+    },
+
+    title: {
+        text: 'Backers vs. Facebook shares'
+    },
+
+    subtitle: {
+        text: 'Source: Kaggle kickstarter set'
+    },
+
+    pane: {
+        size: '90%'
+    },
+
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        y: 100,
+        layout: 'vertical'
+    },
+
+    xAxis: {
+        tickmarkPlacement: 'on'
+    },
+
+    yAxis: {
+        min: 0,
+        endOnTick: false,
+        showLastLabel: true,
+        title: {
+            text: 'Number'
+        },
+        labels: {
+            formatter: function () {
+                return this.value ;
+            }
+        },
+        reversedStacks: false
+    },
+
+    tooltip: {
+        valueSuffix: '.'
+    },
+
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            shadow: false,
+            groupPadding: 0,
+            pointPlacement: 'on'
+        }
+    }
+});
+    </script>
 </html>
