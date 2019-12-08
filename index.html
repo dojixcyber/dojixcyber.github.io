@@ -125,7 +125,8 @@
                             
                         </table>
                     </div>
-                    <div id="container1" class="image4 image-toggle1" style="display:none"></div>
+                    <div id="container1" class="image4 image-toggle1" style="display:none; width:500px; margin-left: 100px"></div>
+                    <div id="container2" class="image4 image-toggle1" style="display:none; width:500px; margin-top:-400px; margin-left: 700px;"></div>
                     <div style="display:none">
                         <!-- Source: http://or.water.usgs.gov/cgi-bin/grapher/graph_windrose.pl -->
                         <table id="freq1" border="0" cellspacing="0" cellpadding="0">
@@ -233,6 +234,72 @@ Highcharts.chart('container1', {
 
     yAxis: {
         min: 0,
+        max: 200000,
+        endOnTick: false,
+        showLastLabel: true,
+        title: {
+            text: 'Number'
+        },
+        labels: {
+            formatter: function () {
+                return this.value ;
+            }
+        },
+        reversedStacks: false
+    },
+
+    tooltip: {
+        valueSuffix: '.'
+    },
+
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            shadow: false,
+            groupPadding: 0,
+            pointPlacement: 'on'
+        }
+    }
+});
+Highcharts.chart('container2', {
+    data: {
+        table: 'freq1',
+        startRow: 1,
+        endRow: 17,
+        endColumn: 7
+    },
+
+    chart: {
+        polar: true,
+        type: 'column'
+    },
+
+    title: {
+        text: 'Backers vs. Facebook shares'
+    },
+
+    subtitle: {
+        text: 'Source: Kaggle kickstarter set'
+    },
+
+    pane: {
+        size: '90%'
+    },
+
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        y: 100,
+        layout: 'vertical'
+    },
+
+    xAxis: {
+        tickmarkPlacement: 'on'
+    },
+
+    yAxis: {
+        min: 0,
+        //max: 200000,
         endOnTick: false,
         showLastLabel: true,
         title: {
