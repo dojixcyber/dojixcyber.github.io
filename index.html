@@ -57,6 +57,7 @@
         </div>
         <div id="container"></div>
 
+        <div id="container1"></div>
         <div style="display:none">
             <!-- Source: http://or.water.usgs.gov/cgi-bin/grapher/graph_windrose.pl -->
             <table id="freq" border="0" cellspacing="0" cellpadding="0">
@@ -105,11 +106,130 @@
                 
             </table>
         </div>
+        <div style="display:none">
+            <!-- Source: http://or.water.usgs.gov/cgi-bin/grapher/graph_windrose.pl -->
+            <table id="freq" border="0" cellspacing="0" cellpadding="0">
+                <tr nowrap bgcolor="#CCCCFF">
+                    <th colspan="9" class="hdr">Table of Frequencies (percent)</th>
+                </tr>
+                <tr nowrap bgcolor="#CCCCFF">
+                    <th class="freq">People</th>
+                    <th class="freq">Backers</th>
+                    <th class="freq">Facebook Friends</th>
+                    <th class="freq">Facebook Shares</th>
+
+                </tr>
+                <tr nowrap>
+                    <td class="dir">Project 1</td>
+                    <td class="data">1</td>
+                    <td class="data">0</td>
+                    <td class="data">1</td>
+            
+                </tr>   
+                    <tr nowrap>
+                    <td class="dir">Project 2</td>
+                    <td class="data">1</td>
+                    <td class="data">169</td>
+                    <td class="data">2</td>
+            
+                </tr>  
+
+                <tr nowrap>
+                    <td class="dir">Project 3</td>
+                    <td class="data">1</td>
+                    <td class="data">568</td>
+                    <td class="data">17</td>
+
+                    
+                </tr>
+                <tr nowrap bgcolor="#DDDDDD">
+                    <td class="dir">Project 4</td>
+                    <td class="data">1</td>
+                    <td class="data">306</td>
+                    <td class="data">1</td>
+            
+            
+                </tr>
+                <tr nowrap>
+                    <td class="dir">Project 5</td>
+                    <td class="data">1</td>
+                    <td class="data">126</td>
+                    <td class="data">8</td>
+
+                </tr>
+                
+            </table>
+        </div>
 
     <div class="parallax"></div>
 
     </body>
     <script>
+        // Parse the data from an inline table using the Highcharts Data plugin
+Highcharts.chart('container1', {
+    data: {
+        table: 'freq',
+        startRow: 1,
+        endRow: 17,
+        endColumn: 7
+    },
+
+    chart: {
+        polar: true,
+        type: 'column'
+    },
+
+    title: {
+        text: 'Backers vs. Facebook shares'
+    },
+
+    subtitle: {
+        text: 'Source: Kaggle kickstarter set'
+    },
+
+    pane: {
+        size: '90%'
+    },
+
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        y: 100,
+        layout: 'vertical'
+    },
+
+    xAxis: {
+        tickmarkPlacement: 'on'
+    },
+
+    yAxis: {
+        min: 0,
+        endOnTick: false,
+        showLastLabel: true,
+        title: {
+            text: 'Number'
+        },
+        labels: {
+            formatter: function () {
+                return this.value ;
+            }
+        },
+        reversedStacks: false
+    },
+
+    tooltip: {
+        valueSuffix: '.'
+    },
+
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            shadow: false,
+            groupPadding: 0,
+            pointPlacement: 'on'
+        }
+    }
+});
         // Parse the data from an inline table using the Highcharts Data plugin
 Highcharts.chart('container', {
     data: {
