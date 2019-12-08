@@ -10,3 +10,10 @@
     height: 400px;
     margin: 0 auto;
 }
+
+#container1 {
+    min-width: 36px;
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto;
+}
